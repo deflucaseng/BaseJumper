@@ -2,7 +2,8 @@ import sys
 import os
 from englexer import EngLexer
 from engparser import EngParser
-from engevaluator import EngEvaluator
+from engcodegenerator import EngCodeGenerator
+
 
 def main():
     # Check if a file path was provided as an argument
@@ -27,7 +28,7 @@ def main():
         # Open and read the file
         tokens = EngLexer(file_path).lex()
         parsednodes = EngParser().parsetokens(tokens)
-        EngEvaluator(parsednodes)
+        EngCodeGenerator(parsednodes, file_path[:-4:])
 
 
 

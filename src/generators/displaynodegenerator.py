@@ -1,0 +1,3 @@
+def displaynodegenerator(stackloc):
+	
+	...

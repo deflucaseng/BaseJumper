@@ -1,16 +1,6 @@
 ind1 isnow 2
-
-
-
-
-
-
-
-
-
-
-
-
-
+ind3 isnow ind1
+ind5 isnow ind1 is equal to ind3
+jump to 2 if ind5
 
 end
