@@ -1,54 +1,84 @@
-def evaluatedassignnodegenerator(stackloc, lhs, op, rhs):
+def evaluatedassignnodegenerator(var, lhs, op, rhs):
     dictcode = {
-        "plus": "mov eax, [esp + {}]\
-            \n\tadd eax, [esp + {}]\
-        	\n\tmov [esp + {}], eax",
+        "plus": f'\
+        mov eax, {lhs}\n\
+        mov ebx, {rhs}\n\
+        add eax, ebx\n\
+        mov dword [{var}], eax\n',
             
-        "minus": "mov eax, [esp + {}]\
-            \n\tsub eax, [esp + {}]\
-            \n\tmov [esp + {}], eax",
+        "minus": f'\
+        mov eax, {lhs}\n\
+        mov ebx, {rhs}\n\
+        sub eax, ebx\n\
+        mov dword [{var}], eax\n',
 
-        "divided": "mov eax, [esp + {}]\
-            \n\tmov edx, 0\
-            \n\tdiv dword [esp + {}]\
-            \n\tmov [esp + {}], eax",
+        "divided": f'\
+        xor edx, edx\n\
+        mov eax, {lhs}\n\
+        mov ebx, {rhs}\n\
+        div ebx\n\
+        mov dword [{var}], eax\n',
 
-        "times": "mov eax, [esp + {}]\
-            \n\tmul dword [esp + {}]\
-            \n\tmov [esp + {}], eax",
+        "times":f'\
+        mov eax, {lhs}\n\
+        mov ebx, {rhs}\n\
+        mul ebx\n\
+        mov dword [{var}], eax\n',
 
-        "equals": "mov eax, [esp + {}]\
-            \n\tcmp eax, [esp + {}]\
-            \n\tsete al\
-            \n\tmovzx eax, al\
-            \n\tmov [esp + {}], eax",
+        "equals":f'\
+        mov eax, {lhs}\n\
+        mov ebx, {rhs}\n\
+        cmp eax, ebx\n\
+        setz cl\n\
+        movzx ecx, cl\n\
+        mov dword [{var}], ecx\n',
 
-        "!equals": "mov eax, [esp + {}]\
-            \n\tcmp eax, [esp + {}]\
-            \n\tsetne al\
-            \n\tmovzx eax, al\
-            \n\tmov [esp + {}], eax",
+        "!equals":f'\
+        mov eax, {lhs}\n\
+        mov ebx, {rhs}\n\
+        cmp eax, ebx\n\
+        setz cl\n\
+        xor cl, 1\n\
+        movzx ecx, cl\n\
+        mov dword [{var}], ecx\n',
 
-        "and": "mov eax, [esp + {}]\
-            \n\tand eax, [esp + {}]\
-            \n\tmov [esp + {}], eax",
+        "and":f'\
+        mov eax, {lhs}\n\
+        mov ebx, {rhs}\n\
+        and eax, ebx\n\
+        mov dword [{var}], eax\n',
 
-        "or": "mov eax, [esp + {}]\
-            \n\tor eax, [esp + {}]\
-            \n\tmov [esp + {}], eax",
+        "or":f'\
+        mov eax, {lhs}\n\
+        mov ebx, {rhs}\n\
+        or eax, ebx\n\
+        mov dword [{var}], eax\n',
 
-        "xor": "mov eax, [esp + {}]\
-            \n\txor eax, [esp + {}]\
-            \n\tmov [esp + {}], eax",
+        "xor":f'\
+        mov eax, {lhs}\n\
+        mov ebx, {rhs}\n\
+        xor eax, ebx\n\
+        mov dword [{var}], eax\n',
 
-        "nand": "mov eax, [esp + {}]\
-            \n\tand eax, [esp + {}]\
-            \n\tnot eax\
-            \n\tmov [esp + {}], eax",
+        "nand":f'\
+        mov eax, {lhs}\n\
+        mov ebx, {rhs}\n\
+        and eax, ebx\n\
+        not eax\n\
+        mov dword [{var}], eax\n',
 
-        "xnor": "mov eax, [esp + {}]\
-            \n\txor eax, [esp + {}]\
-            \n\tnot eax\
-            \n\tmov [esp + {}], eax"
+        "xnor": f'\
+        mov eax, {lhs}\n\
+        mov ebx, {rhs}\n\
+        xor eax, ebx\n\
+        not eax\n\
+        mov dword [{var}], eax\n',
+
+        "nor":f'\
+        mov eax, {lhs}\n\
+        mov ebx, {rhs}\n\
+        or eax, ebx\n\
+        not eax\n\
+        mov dword [{var}], eax\n',
     }
-    return f'{dictcode[op].format(lhs, rhs, stackloc)}'
+    return dictcode[op]

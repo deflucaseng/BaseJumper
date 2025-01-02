@@ -1,3 +1,5 @@
-def simpleassigngenerator(stackloc, value):
-	return f"mov dword [ebp-{stackloc}], {value}"
+def simpleassigngenerator(var, value):
+	return f"\
+	\tmov eax, {value}\n\t\
+	mov dword [{var}], eax\n"
 
