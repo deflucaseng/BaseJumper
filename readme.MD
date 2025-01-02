@@ -18,10 +18,10 @@ The syntax is intentionally meant to be very human readable (even more than pyth
 
 ## Variable Assignment
 
-'''
+```
 x isnow 3
 y isnow x
-'''
+```
 It uses the **isnow** keyword in order to assign variables.
 
 ## Evaluated Assignment
@@ -34,12 +34,12 @@ You can additionally use assignment statements which perform basic math or boole
 
 This language supports addition, subtraction, multiplication, and floor division
 
-'''
+```
 x isnow y plus 3
 f isnow 7 minus 2
 z isnow 3 times 5
 k isnow b divided 8
-'''
+```
 
 
 ### Boolean Comparative Assignment
@@ -47,24 +47,24 @@ k isnow b divided 8
 This language supports and, or, nor, xnor, nand, and xnor
 The case used for true and false do not matter here. 
 
-'''
+```
 a isnow true or false
 b isnow F and k
 c isnow false nor false
 d isnow x xnor True
 e isnow q nand o
 f isnow r xnor g
-'''
+```
 
 ### Numeric Comparative Assignment
 
 This compares two numbers, and stores a boolean value depending on the comparison of the two numbers
 This supports equal to and not equal to
 
-'''
+```
 y isnow f is equal to 3
 z isnow g is not equal to 7
-'''
+```
 
 ### Conditional Jump
 
@@ -73,10 +73,10 @@ requires a variable, and thus this language does not directly support infinite l
 you could if you wanted)
 
 
-'''
+```
 x isnow True
 jump to 3 if x
-'''
+```
 
 This code would jump to the third line of written code. 
 
@@ -84,18 +84,18 @@ This code would jump to the third line of written code.
 
 Displaying involves using the display keyword followed by whatever variable name or value you would like to print
 
-'''
+```
 display 3
 display true
 display x
-'''
+```
 
 ### Ending
 At the end of the code block simply write end
 
-'''
+```
 end
-'''
+```
 
 
 ### Important Notes
